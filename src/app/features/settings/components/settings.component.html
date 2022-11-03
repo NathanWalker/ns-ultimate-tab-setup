@@ -68,14 +68,14 @@
     (tap)="isBoolean ? null : viewDetail(name)"
   >
     <Label [text]="name" class="align-middle"></Label>
-    <ImageCacheIt
+    <Label
       *ngIf="!isBoolean"
+      text="&#xf054;"
       col="1"
-      class="w-6 h-6 opacity-20"
+      class="fa text-center text-neutral-300"
       verticalAlignment="center"
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Feather-arrows-chevron-right.svg/1024px-Feather-arrows-chevron-right.svg.png"
     >
-    </ImageCacheIt>
+    </Label>
     <Switch *ngIf="isBoolean" col="1"></Switch>
   </GridLayout>
 </ng-template>
