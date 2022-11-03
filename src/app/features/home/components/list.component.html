@@ -1,8 +1,4 @@
-<GridLayout
-  rows="auto,*"
-  class="bg-transparent"
-  android:paddingTop="15"
->
+<GridLayout rows="auto,*" class="bg-transparent" android:paddingTop="15">
   <Label
     text="My List"
     class="text-xl text-gray-800 text-center align-middle"
@@ -18,13 +14,15 @@
     (itemTap)="itemTap($event)"
   >
     <ng-template let-item="item">
-      <GridLayout [background]="itemBgColor" class="m-1" borderRadius="8">
-        <ImageCacheIt
-          [src]="item.image"
-          stretch="aspectFill"
-          class="w-full h-full"
-          borderRadius="8"
-        ></ImageCacheIt>
+      <GridLayout class="p-1">
+        <GridLayout [background]="itemBgColor" class="m-1" borderRadius="8">
+          <ImageCacheIt
+            [src]="item.image"
+            stretch="aspectFill"
+            class="w-full h-full"
+            borderRadius="8"
+          ></ImageCacheIt>
+        </GridLayout>
       </GridLayout>
     </ng-template>
   </CollectionView>
