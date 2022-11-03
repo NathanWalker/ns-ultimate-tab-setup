@@ -12,18 +12,26 @@
     "@angular/platform-browser": "~14.2.0",
     "@angular/platform-browser-dynamic": "~14.2.0",
     "@angular/router": "~14.2.0",
+    "@nativescript-community/ui-collectionview": "~4.0.63",
+    "@nativescript-community/ui-lottie": "^5.0.0",
+    "@nativescript-community/ui-material-bottom-navigation": "^7.0.28",
     "@nativescript/angular": "~14.2.0",
     "@nativescript/core": "~8.3.0",
-    "@nativescript/theme": "~3.0.2",
+    "@nativescript/haptics": "^3.0.0",
+    "@nativescript/tailwind": "~2.0.0",
+    "@triniwiz/nativescript-image-cache-it": "7.0.20",
     "rxjs": "~7.5.0",
     "zone.js": "~0.11.5"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~14.2.0",
     "@angular/compiler-cli": "~14.2.0",
+    "@nativescript/android": "8.3.1",
+    "@nativescript/ios": "8.3.3",
     "@nativescript/types": "~8.3.0",
     "@nativescript/webpack": "~5.0.9",
     "@ngtools/webpack": "~14.2.0",
+    "tailwindcss": "^3.2.0",
     "typescript": "~4.7.0"
   }
 }

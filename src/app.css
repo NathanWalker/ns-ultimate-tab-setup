@@ -1,6 +1,25 @@
-@import '@nativescript/theme/css/core.css';
-@import '@nativescript/theme/css/default.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-Button.-primary {
-  font-size: 18;
+Page {
+  background: transparent;
+}
+
+.ion {
+  font-family: 'Ionicons', 'ionicons';
+  font-weight: 400;
+}
+
+.fa {
+  font-family: 'FontAwesome', 'fontawesome-webfont';
+  font-weight: 400;
+}
+
+/* TEMPORARY testing visuals */
+.bg-semi-gradient {
+  background: linear-gradient(to top, #595959, rgba(0,0,0,0));
+}
+.bg-tile {
+  background: linear-gradient(135deg, #161828, #2f2444);
 }

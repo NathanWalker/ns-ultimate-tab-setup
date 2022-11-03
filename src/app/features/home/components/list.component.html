@@ -1,0 +1,31 @@
+<GridLayout
+  rows="auto,*"
+  class="bg-transparent"
+  android:paddingTop="15"
+>
+  <Label
+    text="My List"
+    class="text-xl text-gray-800 text-center align-middle"
+    (loaded)="loadedTitle($event)"
+  ></Label>
+
+  <CollectionView
+    row="1"
+    [items]="items"
+    colWidth="50%"
+    rowHeight="28%"
+    class="px-3 mt-3"
+    (itemTap)="itemTap($event)"
+  >
+    <ng-template let-item="item">
+      <GridLayout [background]="itemBgColor" class="m-1" borderRadius="8">
+        <ImageCacheIt
+          [src]="item.image"
+          stretch="aspectFill"
+          class="w-full h-full"
+          borderRadius="8"
+        ></ImageCacheIt>
+      </GridLayout>
+    </ng-template>
+  </CollectionView>
+</GridLayout>

@@ -1,0 +1,21 @@
+<GridLayout rows="auto,*" android:paddingTop="15">
+  <GridLayout rows="auto" columns="auto,*,auto">
+    <Label
+      colSpan="3"
+      [text]="name"
+      class="text-xl text-gray-800 text-center align-middle"
+      (loaded)="loadedTitle($event)"
+    ></Label>
+    <ImageCacheIt
+      col="0"
+      class="w-6 h-6 opacity-60"
+      verticalAlignment="center"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Feather-arrows-chevron-left.svg/1024px-Feather-arrows-chevron-left.svg.png?20170620140934"
+      (tap)="back()"
+    >
+    </ImageCacheIt>
+  </GridLayout>
+  <StackLayout row="1" class="p-5">
+    <Label [text]="name + ' detail within tab outlet.'"></Label>
+  </StackLayout>
+</GridLayout>

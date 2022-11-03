@@ -1,0 +1,81 @@
+<GridLayout rows="auto,*" android:paddingTop="15">
+  <Label
+    text="Settings"
+    class="text-xl text-gray-800 text-center align-middle"
+    (loaded)="loadedTitle($event)"
+  ></Label>
+  <ScrollView row="1">
+    <StackLayout class="p-5">
+      <StackLayout class="bg-white rounded-lg">
+        <ng-container
+          *ngTemplateOutlet="
+            settingsRow;
+            context: { name: 'Airplane Mode', isBoolean: true }
+          "
+        ></ng-container>
+
+        <ContentView height="1" class="bg-gray-100"></ContentView>
+
+        <ng-container
+          *ngTemplateOutlet="
+            settingsRow;
+            context: { name: 'Bluetooth', isBoolean: true }
+          "
+        ></ng-container>
+
+        <ContentView height="1" class="bg-gray-100"></ContentView>
+
+        <ng-container
+          *ngTemplateOutlet="settingsRow; context: { name: 'Accessibility' }"
+        ></ng-container>
+
+        <ContentView height="1" class="bg-gray-100"></ContentView>
+
+        <ng-container
+          *ngTemplateOutlet="
+            settingsRow;
+            context: { name: 'VPN', isBoolean: true }
+          "
+        ></ng-container>
+      </StackLayout>
+
+      <StackLayout class="bg-white rounded-lg mt-8">
+        <ng-container
+          *ngTemplateOutlet="settingsRow; context: { name: 'Notifications' }"
+        ></ng-container>
+
+        <ContentView height="1" class="bg-gray-100"></ContentView>
+
+        <ng-container
+          *ngTemplateOutlet="settingsRow; context: { name: 'Focus' }"
+        ></ng-container>
+
+        <ContentView height="1" class="bg-gray-100"></ContentView>
+
+        <ng-container
+          *ngTemplateOutlet="settingsRow; context: { name: 'Screen Time' }"
+        ></ng-container>
+      </StackLayout>
+    </StackLayout>
+  </ScrollView>
+</GridLayout>
+
+<ng-template #settingsRow let-name="name" let-isBoolean="isBoolean">
+  <GridLayout
+    rows=""
+    columns="*,auto"
+    class="h-12 py-2 px-4"
+    (tap)="isBoolean ? null : viewDetail(name)"
+  >
+    <Label [text]="name" class="align-middle"></Label>
+    <ImageCacheIt
+      *ngIf="!isBoolean"
+      col="1"
+      class="w-6 h-6 opacity-20"
+      verticalAlignment="center"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Feather-arrows-chevron-right.svg/1024px-Feather-arrows-chevron-right.svg.png"
+    >
+    </ImageCacheIt>
+    <Switch *ngIf="isBoolean" col="1"></Switch>
+  </GridLayout>
+</ng-template>

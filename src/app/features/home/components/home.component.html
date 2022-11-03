@@ -1,0 +1,39 @@
+<GridLayout rows="*, auto" class="bg-transparent" (loaded)="loadedHome($event)">
+    <MDBottomNavigation rowSpan="2" (selectedIndexChange)="selectedIndexChange($event)" (loaded)="loadedTabs($event)" swipeEnabled="false">
+      <MDTabStrip>
+        <MDTabStripItem class="debug:bg-[#000316]"></MDTabStripItem>
+        <MDTabStripItem class="debug:bg-[#000316]"></MDTabStripItem>
+        <MDTabStripItem class="debug:bg-[#000316]"></MDTabStripItem>
+      </MDTabStrip>
+      <MDTabContentItem>
+        <GridLayout>
+          <page-router-outlet actionBarVisibility="never" name="listTab"></page-router-outlet>
+        </GridLayout>
+      </MDTabContentItem>
+      <MDTabContentItem>
+        <GridLayout>
+          <page-router-outlet actionBarVisibility="never" name="favoritesTab"></page-router-outlet>
+        </GridLayout>
+      </MDTabContentItem>
+      <MDTabContentItem>
+        <GridLayout>
+          <page-router-outlet actionBarVisibility="never" name="settingsTab"></page-router-outlet>
+        </GridLayout>
+      </MDTabContentItem>
+    </MDBottomNavigation>
+  
+    <ContentView row="0" class="align-bottom bg-semi-gradient" height="20" opacity=".5"></ContentView>
+  
+    <GridLayout row="1" columns="*, *, *" ios:rows="49" android:rows="56" backgroundColor="#efefef">
+      <GridLayout col="0" class="debug:bg-red-50/50" (tap)="changeTab(0)">
+        <ns-tab-icon class="w-[38]" [active]="appStateService?.tabView?.selectedIndex === 0" image="https://img.icons8.com/fluency-systems-regular/344/search-in-list.png" activeImage="https://img.icons8.com/fluency/344/search-in-list.png" (loaded)="loadedSelectedLogo($event)"></ns-tab-icon>
+      </GridLayout>
+      <GridLayout col="1" class="debug:bg-blue-50/50" (tap)="changeTab(1)">
+        <ns-tab-icon class="w-[32]" [active]="appStateService?.tabView?.selectedIndex === 1" image="https://img.icons8.com/fluency-systems-regular/344/heart-with-arrow.png" activeImage="https://img.icons8.com/cotton/344/favorite-heart--v1.png"></ns-tab-icon>
+      </GridLayout>
+      <GridLayout col="2" class="debug:bg-yellow-50/50" (tap)="changeTab(2)">
+        <ns-tab-icon class="w-[32]" [active]="appStateService?.tabView?.selectedIndex === 2" image="https://img.icons8.com/sf-regular/344/gear.png" activeImage="https://img.icons8.com/3d-fluency/344/gear--v2.png"></ns-tab-icon>
+      </GridLayout>
+    </GridLayout>
+  </GridLayout>
+  
