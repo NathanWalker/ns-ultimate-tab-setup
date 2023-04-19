@@ -3,7 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NativeScriptCommonModule, NativeScriptFormsModule, NativeScriptRouterModule } from '@nativescript/angular';
 // import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 import { NativeScriptMaterialBottomNavigationModule } from '@nativescript-community/ui-material-bottom-navigation/angular';
-import { CollectionViewModule } from '@nativescript-community/ui-collectionview/angular';
+import { CollectionViewModule } from '@nstudio/ui-collectionview/angular';
 import { ImageCacheItModule } from '@triniwiz/nativescript-image-cache-it/angular';
 import { UI_COMPONENTS } from './components';
 

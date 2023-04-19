@@ -27,12 +27,6 @@ import {
   
   export class CardView extends CardViewCommon {
     private _androidViewId: number;
-    nativeView;
-  
-    // @ts-ignore
-    get android(): any {
-      return this.nativeView;
-    }
   
     [radiusProperty.setNative](value: number) {
       this.nativeView.setRadius(value);

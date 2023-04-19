@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "@nativescript/angular";
-import { EventData, Label } from "@nativescript/core";
+import { EventData, PageTransition, SharedTransition } from "@nativescript/core";
 import { AppStateService } from "../../../core/services/app-state.service";
 import { Item } from "../../../core/models";
 import { ItemService } from "../../../core/services/item.service";
@@ -27,9 +27,7 @@ export class FavoritesComponent implements OnInit {
     const item = this.itemService.getItem(args.index + 1);
     this.appStateService.navAwayFromTabs().then(() => {
       this.router.navigate(["/favorite-detail", item.id], {
-        transition: {
-          name: "slide",
-        },
+        transition: SharedTransition.custom(new PageTransition())
       });
     });
   }

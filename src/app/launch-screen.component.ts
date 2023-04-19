@@ -41,18 +41,9 @@ export class LaunchScreenComponent {
             target: this._lottieView,
             opacity: 0,
             scale: { x: 0.7, y: 0.7 },
-            // translate: {x: 0, y: 10},
             duration: 400,
             curve: CoreTypes.AnimationCurve.linear,
           },
-          // {
-          //   target: this._logo,
-          //   opacity: 1,
-          //   // delay: 100,
-          //   // scale: { x: 1, y: 1 },
-          //   duration: 200,
-          //   curve: CoreTypes.AnimationCurve.easeInOut,
-          // },
         ]);
         animate
           .play()

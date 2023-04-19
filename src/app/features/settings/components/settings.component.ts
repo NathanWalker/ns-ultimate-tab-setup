@@ -14,12 +14,12 @@ export class SettingsComponent {
   activeRoute = inject(ActivatedRoute);
 
   viewDetail(name: string) {
-    this.router.navigate(["../detail", name], {
-      relativeTo: this.activeRoute,
-      transition: {
-        name: "slide",
-      },
-    });
+      this.router.navigate(["../detail", name], {
+        relativeTo: this.activeRoute,
+        transition: {
+          name: "slideLeft",
+        }
+      });
   }
 
   loadedTitle(args: EventData) {

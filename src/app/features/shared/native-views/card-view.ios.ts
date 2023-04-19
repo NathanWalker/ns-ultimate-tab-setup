@@ -15,7 +15,6 @@ import {
   } from './card-view.common';
   
   export class CardView extends CardViewCommon {
-    nativeView: UIView;
   
     constructor() {
       super();
@@ -28,11 +27,6 @@ import {
       this.shadowOpacity = 0.4;
       this.shadowOffsetHeight = 2;
       this.shadowOffsetWidth = 0;
-    }
-  
-    // @ts-ignore
-    get ios(): any {
-      return this.nativeView;
     }
   
     [radiusProperty.setNative](value: number) {
