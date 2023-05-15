@@ -22,7 +22,9 @@ export class SettingsDetailComponent {
   }
 
   back() {
-    this.router.back();
+    this.router.back({
+      outlets: ['settingsTab']
+    });
   }
 
   loadedTitle(args: EventData) {
