@@ -66,6 +66,7 @@
     columns="*,auto"
     class="h-12 py-2 px-4"
     (tap)="isBoolean ? null : viewDetail(name)"
+    [ignoreTouchAnimation]="isBoolean"
   >
     <Label [text]="name" class="align-middle"></Label>
     <Label

@@ -1,9 +1,10 @@
 import { Component, inject } from "@angular/core";
-import { NativeDialogService } from "@nativescript/angular";
-import { EventData } from "@nativescript/core";
+import { NativeDialogService, RouterExtensions } from "@nativescript/angular";
+import { EventData, PageTransition, SharedTransition } from "@nativescript/core";
 import { Haptics } from "@nativescript/haptics";
 import { uxLabelFadeIn } from "../../../utils";
 import { AppStateService } from "../../../core/services/app-state.service";
+import { ItemService } from "~/app/core/services/item.service";
 
 interface IListItem {
   index: number;
@@ -19,6 +20,8 @@ interface IListItem {
 export class ListComponent {
   nativeDialog = inject(NativeDialogService);
   appState = inject(AppStateService);
+  itemService = inject(ItemService);
+  router = inject(RouterExtensions);
   itemBgColor = "linear-gradient(135deg, #161828, #2f2444)";
   items: Array<IListItem>;
 
@@ -35,6 +38,12 @@ export class ListComponent {
 
   itemTap(args) {
     Haptics.selection();
+    const item = this.itemService.getItem(1);
+    this.appState.navAwayFromTabs().then(() => {
+      this.router.navigate(["/favorite-detail", item.id], {
+        transition: SharedTransition.custom(new PageTransition())
+      });
+    });
   }
 
   loadedTitle(args: EventData) {
