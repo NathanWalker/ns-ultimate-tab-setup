@@ -27,7 +27,11 @@ export class FavoritesComponent implements OnInit {
     const item = this.itemService.getItem(args.index + 1);
     this.appStateService.navAwayFromTabs().then(() => {
       this.router.navigate(["/favorite-detail", item.id], {
-        transition: SharedTransition.custom(new PageTransition())
+        transition: SharedTransition.custom(new PageTransition(), {
+          pageReturn: {
+            duration: 150,
+          }
+        })
       });
     });
   }

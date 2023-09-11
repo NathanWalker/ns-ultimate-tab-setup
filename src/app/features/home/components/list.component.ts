@@ -41,7 +41,11 @@ export class ListComponent {
     const item = this.itemService.getItem(1);
     this.appState.navAwayFromTabs().then(() => {
       this.router.navigate(["/favorite-detail", item.id], {
-        transition: SharedTransition.custom(new PageTransition())
+        transition: SharedTransition.custom(new PageTransition(), {
+          pageReturn: {
+            duration: 150,
+          }
+        })
       });
     });
   }
