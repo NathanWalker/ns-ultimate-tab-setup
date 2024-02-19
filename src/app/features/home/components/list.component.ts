@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { NativeDialogService, RouterExtensions } from "@nativescript/angular";
-import { EventData, PageTransition, SharedTransition } from "@nativescript/core";
+import { EventData, Page, PageTransition, Screen, SharedTransition } from "@nativescript/core";
 import { Haptics } from "@nativescript/haptics";
 import { uxLabelFadeIn } from "../../../utils";
 import { AppStateService } from "../../../core/services/app-state.service";
@@ -22,6 +22,7 @@ export class ListComponent {
   appState = inject(AppStateService);
   itemService = inject(ItemService);
   router = inject(RouterExtensions);
+  page = inject(Page);
   itemBgColor = "linear-gradient(135deg, #161828, #2f2444)";
   items: Array<IListItem>;
 
@@ -42,8 +43,16 @@ export class ListComponent {
     this.appState.navAwayFromTabs().then(() => {
       this.router.navigate(["/favorite-detail", item.id], {
         transition: SharedTransition.custom(new PageTransition(), {
+          pageStart: {
+            x: 200,
+            y: 0,
+            opacity: 0,
+          },
+          pageEnd: {
+            duration: 250,
+          },
           pageReturn: {
-            duration: 150,
+            duration: 200,
           }
         })
       });

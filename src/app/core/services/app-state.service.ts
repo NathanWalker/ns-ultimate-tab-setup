@@ -12,32 +12,15 @@ export class AppStateService {
   navAwayFromTabs() {
     return new Promise<void>((resolve) => {
       if (this.homeTabContainer) {
-        if (global.isIOS) {
-          Utils.ios.animateWithSpring({
-            animations: () => {
-              this.homeTabContainer.opacity = 0;
-              this.homeTabContainer.translateX = -Screen.mainScreen.widthDIPs;
-            },
-            completion: () => {
-              // reset to desired position for on the way back
-              this.homeTabContainer.opacity = 0;
-              this.homeTabContainer.translateX = -(
-                Screen.mainScreen.widthDIPs / 3
-              );
-            },
-          });
-          resolve();
-        } else {
-          this.homeTabContainer
-            .animate({
-              opacity: 0,
-              translate: { x: -Screen.mainScreen.widthDIPs, y: 0 },
-              duration: 300,
-              curve: CoreTypes.AnimationCurve.easeInOut,
-            })
-            .then(resolve)
-            .catch(resolve);
-        }
+        this.homeTabContainer
+          .animate({
+            opacity: 0,
+            translate: { x: -Screen.mainScreen.widthDIPs / 3, y: 0 },
+            duration: 300,
+            curve: CoreTypes.AnimationCurve.easeInOut,
+          })
+          .then(resolve)
+          .catch(resolve);
       }
     });
   }
