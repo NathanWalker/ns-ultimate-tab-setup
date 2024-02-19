@@ -1,4 +1,7 @@
 NativeScript Ultimate Tab Setup™️ 
+
+https://github.com/NathanWalker/ns-ultimate-tab-setup/assets/457187/7a3f78b3-6507-4fe3-9fac-7ff6c7ce3377
+
 - proper boot to tab route configuration with lazy loaded outlets
 - option to route to launch screen for moment of UX splash but also functional needs if need to prepare data for first experience
 - ability to route within tab outlets or outside them
