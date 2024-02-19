@@ -16,7 +16,7 @@ export class AppStateService {
           .animate({
             opacity: 0,
             translate: { x: -Screen.mainScreen.widthDIPs / 3, y: 0 },
-            duration: 300,
+            duration: 200,
             curve: CoreTypes.AnimationCurve.easeInOut,
           })
           .then(resolve)
