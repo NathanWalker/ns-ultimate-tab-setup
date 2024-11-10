@@ -33,7 +33,7 @@ export class ListComponent {
       this.items.push({
         index: i,
         color: this.itemBgColor,
-        image: `https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2FtcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80`,
+        image: `~/assets/outdoors.jpg`,
       });
     }
   }
