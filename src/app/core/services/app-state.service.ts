@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BottomNavigation } from "@nativescript-community/ui-material-bottom-navigation";
-import { CoreTypes, GridLayout, Screen, Utils } from "@nativescript/core";
+import { CoreTypes, GridLayout, Screen } from "@nativescript/core";
 
 @Injectable({
   providedIn: "root",
@@ -16,8 +16,8 @@ export class AppStateService {
           .animate({
             opacity: 0,
             translate: { x: -Screen.mainScreen.widthDIPs / 3, y: 0 },
-            duration: 200,
-            curve: CoreTypes.AnimationCurve.easeInOut,
+            duration: 150,
+            curve: CoreTypes.AnimationCurve.easeOut,
           })
           .then(resolve)
           .catch(resolve);

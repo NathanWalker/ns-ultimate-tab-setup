@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ['./src/**/*.{css,xml,html,vue,svelte,ts,tsx}'],
+    content: ['./src/**/*.{css,html,ts}'],
     // use .dark to toggle dark mode - since 'media' (default) does not work in NativeScript
     darkMode: 'class',
     theme: {

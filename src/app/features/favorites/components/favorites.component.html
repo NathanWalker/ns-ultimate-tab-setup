@@ -1,15 +1,20 @@
-<GridLayout rows="auto,*" android:paddingTop="15">
-  <Label
+<GridLayout rows="auto,*">
+  <!-- Optional title -->
+  <!-- <Label
     text="Favorites"
     class="text-xl text-gray-800 text-center align-middle"
     (loaded)="loadedTitle($event)"
-  ></Label>
+  ></Label> -->
   <CollectionView
     row="1"
     [items]="items"
     colWidth="100%"
-    class="px-3 mt-3"
+    class="px-3 pb-3"
+    [ngClass]="{
+      'pt-3': !isIOS
+    }"
     (itemTap)="itemTap($event)"
+    iosOverflowSafeArea="true"
   >
     <ng-template let-item="item">
       <StackLayout>
@@ -27,7 +32,7 @@
               class="h-40 rounded-t-xl"
               stretch="aspectFill"
               verticalAlignment="center"
-              src="https://images.unsplash.com/photo-1543039625-14cbd3802e7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b3V0ZG9vcnxlbnwwfHwwfHw%3D&w=1000&q=80"
+              src="https://m.media-amazon.com/images/I/71+P-+MRm8L.jpg"
             >
             </ImageCacheIt>
             <GridLayout
@@ -51,7 +56,7 @@
                 class="w-8 h-8 rounded-full mt-2"
                 stretch="aspectFill"
                 verticalAlignment="center"
-                src="https://shotkit.com/wp-content/uploads/2021/06/cool-profile-pic-matheus-ferrero.jpeg"
+                src="~/assets/icons/avatar.png"
               >
               </ImageCacheIt>
               <Label

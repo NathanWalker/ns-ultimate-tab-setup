@@ -28,6 +28,6 @@ export class SettingsDetailComponent {
   }
 
   loadedTitle(args: EventData) {
-    uxLabelFadeIn(args);
+    uxLabelFadeIn(args, 200);
   }
 }

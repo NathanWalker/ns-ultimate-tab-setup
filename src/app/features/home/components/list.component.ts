@@ -25,6 +25,7 @@ export class ListComponent {
   page = inject(Page);
   itemBgColor = "linear-gradient(135deg, #161828, #2f2444)";
   items: Array<IListItem>;
+  isIOS = __APPLE__;
 
   constructor() {
     this.items = [];
@@ -42,6 +43,9 @@ export class ListComponent {
     const item = this.itemService.getItem(1);
     this.appState.navAwayFromTabs().then(() => {
       this.router.navigate(["/favorite-detail", item.id], {
+        queryParams: {
+          title: 'Home'
+        },
         transition: SharedTransition.custom(new PageTransition(), {
           pageStart: {
             x: 200,
@@ -49,10 +53,10 @@ export class ListComponent {
             opacity: 0,
           },
           pageEnd: {
-            duration: 250,
+            duration: 150,
           },
           pageReturn: {
-            duration: 200,
+            duration: 150,
           }
         })
       });

@@ -17,17 +17,21 @@ export class FavoriteDetailComponent implements OnInit {
   activeRoute = inject(ActivatedRoute);
   router = inject(RouterExtensions);
   item: Item;
+  title: string;
 
   ngOnInit() {
     this.activeRoute.params.pipe(take(1)).subscribe((params) => {
       this.item = this.itemService.getItem(+params.id);
+    });
+    this.activeRoute.queryParams.pipe(take(1)).subscribe((params) => {
+      this.title = params.title;
     });
   }
 
   back() {
     this.router.back();
   }
-  
+
   loadedTitle(args: EventData) {
     uxLabelFadeIn(args);
   }

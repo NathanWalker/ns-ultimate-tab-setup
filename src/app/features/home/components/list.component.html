@@ -1,17 +1,22 @@
-<GridLayout rows="auto,*" class="bg-transparent" android:paddingTop="15">
-  <Label
+<GridLayout rows="auto,*" class="bg-transparent">
+  <!-- Optional title -->
+  <!-- <Label
     text="My List"
     class="text-xl text-gray-800 text-center align-middle"
     (loaded)="loadedTitle($event)"
-  ></Label>
+  ></Label> -->
 
   <CollectionView
     row="1"
     [items]="items"
     colWidth="50%"
     rowHeight="28%"
-    class="px-3 mt-3"
+    class="px-3 pb-3"
+    [ngClass]="{
+      'pt-3': !isIOS
+    }"
     (itemTap)="itemTap($event)"
+    iosOverflowSafeArea="true"
   >
     <ng-template let-item="item">
       <GridLayout class="p-1">

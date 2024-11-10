@@ -1,2 +1,40 @@
-<Image [src]="image" [ngClass]="className" horizontalAlignment="center" (loaded)="loadedInactiveImage($event)"></Image>
-<Image [src]="activeImage" [ngClass]="className" horizontalAlignment="center" (loaded)="loadedActiveImage($event)"></Image>
+@if (isIOS) {
+<Image
+  [src]="'sys://' + sfSymbol()"
+  class="h-center"
+  [tintColor]="activeTint()"
+  [ngClass]="{
+    'h-[25]': isIOS,
+    'w-[25]': !isIOS
+  }"
+></Image>
+} @else {
+<Image
+  [src]="image()"
+  (loaded)="loadedInactiveImage($event)"
+  class="h-center"
+  [ngClass]="{
+    'w-[30]': isIOS,
+    'w-[25]': !isIOS
+  }"
+></Image>
+<Image
+  [src]="activeImage()"
+  (loaded)="loadedActiveImage($event)"
+  class="h-center"
+  [ngClass]="{
+    'w-[30]': isIOS,
+    'w-[25]': !isIOS
+  }"
+></Image>
+}
+
+<Label
+  row="1"
+  [text]="text()"
+  class="text-xs text-center mt-1"
+  [ngClass]="{
+    'text-blue-500': active(),
+    'text-gray-500': !active()
+  }"
+></Label>

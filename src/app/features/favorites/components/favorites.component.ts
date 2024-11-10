@@ -22,6 +22,7 @@ export class FavoritesComponent implements OnInit {
   activatedRoute = inject(ActivatedRoute);
   appStateService = inject(AppStateService);
   items: Array<Item>;
+  isIOS = __APPLE__;
 
   ngOnInit(): void {
     this.items = this.itemService.getItems();
@@ -31,6 +32,9 @@ export class FavoritesComponent implements OnInit {
     const item = this.itemService.getItem(args.index + 1);
     this.appStateService.navAwayFromTabs().then(() => {
       this.router.navigate(["/favorite-detail", item.id], {
+        queryParams: {
+          title: 'Favorites'
+        },
         transition: SharedTransition.custom(new PageTransition(), {
           pageStart: {
             x: 200,
@@ -38,10 +42,10 @@ export class FavoritesComponent implements OnInit {
             opacity: 0,
           },
           pageEnd: {
-            duration: 250,
+            duration: 150,
           },
           pageReturn: {
-            duration: 200,
+            duration: 150,
           },
         }),
       });

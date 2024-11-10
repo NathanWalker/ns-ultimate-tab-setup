@@ -1,39 +1,88 @@
 <GridLayout rows="*, auto" class="bg-transparent" (loaded)="loadedHome($event)">
-    <MDBottomNavigation rowSpan="2" (selectedIndexChange)="selectedIndexChange($event)" (loaded)="loadedTabs($event)" swipeEnabled="false">
-      <MDTabStrip>
-        <MDTabStripItem class="debug:bg-[#000316]"></MDTabStripItem>
-        <MDTabStripItem class="debug:bg-[#000316]"></MDTabStripItem>
-        <MDTabStripItem class="debug:bg-[#000316]"></MDTabStripItem>
-      </MDTabStrip>
-      <MDTabContentItem>
-        <GridLayout>
-          <page-router-outlet actionBarVisibility="never" name="listTab"></page-router-outlet>
-        </GridLayout>
-      </MDTabContentItem>
-      <MDTabContentItem>
-        <GridLayout>
-          <page-router-outlet actionBarVisibility="never" name="favoritesTab"></page-router-outlet>
-        </GridLayout>
-      </MDTabContentItem>
-      <MDTabContentItem>
-        <GridLayout>
-          <page-router-outlet actionBarVisibility="never" name="settingsTab"></page-router-outlet>
-        </GridLayout>
-      </MDTabContentItem>
-    </MDBottomNavigation>
-  
-    <ContentView row="0" class="align-bottom bg-semi-gradient" height="15" opacity=".4"></ContentView>
-  
-    <GridLayout row="1" columns="*, *, *" ios:rows="49" android:rows="56" backgroundColor="#efefef">
-      <GridLayout col="0" class="debug:bg-red-50/50" (tap)="changeTab(0)">
-        <ns-tab-icon class="w-[38]" [active]="appStateService?.tabView?.selectedIndex === 0" image="https://img.icons8.com/fluency-systems-regular/344/search-in-list.png" activeImage="https://img.icons8.com/fluency/344/search-in-list.png" (loaded)="loadedSelectedLogo($event)"></ns-tab-icon>
+  <MDBottomNavigation
+    rowSpan="2"
+    (selectedIndexChange)="selectedIndexChange($event)"
+    (loaded)="loadedTabs($event)"
+    swipeEnabled="false"
+    class="app-background"
+  >
+    <MDTabStrip>
+      <MDTabStripItem class="debug:bg-[#000316]"></MDTabStripItem>
+      <MDTabStripItem class="debug:bg-[#000316]"></MDTabStripItem>
+      <MDTabStripItem class="debug:bg-[#000316]"></MDTabStripItem>
+    </MDTabStrip>
+    <MDTabContentItem>
+      <GridLayout>
+        <page-router-outlet
+          actionBarVisibility="never"
+          name="listTab"
+        ></page-router-outlet>
       </GridLayout>
-      <GridLayout col="1" class="debug:bg-blue-50/50" (tap)="changeTab(1)">
-        <ns-tab-icon class="w-[32]" [active]="appStateService?.tabView?.selectedIndex === 1" image="https://img.icons8.com/fluency-systems-regular/344/heart-with-arrow.png" activeImage="https://img.icons8.com/cotton/344/favorite-heart--v1.png"></ns-tab-icon>
+    </MDTabContentItem>
+    <MDTabContentItem>
+      <GridLayout>
+        <page-router-outlet
+          actionBarVisibility="never"
+          name="favoritesTab"
+        ></page-router-outlet>
       </GridLayout>
-      <GridLayout col="2" class="debug:bg-yellow-50/50" (tap)="changeTab(2)">
-        <ns-tab-icon class="w-[32]" [active]="appStateService?.tabView?.selectedIndex === 2" image="https://img.icons8.com/sf-regular/344/gear.png" activeImage="https://img.icons8.com/3d-fluency/344/gear--v2.png"></ns-tab-icon>
+    </MDTabContentItem>
+    <MDTabContentItem>
+      <GridLayout>
+        <page-router-outlet
+          actionBarVisibility="never"
+          name="settingsTab"
+        ></page-router-outlet>
       </GridLayout>
-    </GridLayout>
+    </MDTabContentItem>
+  </MDBottomNavigation>
+
+  <!-- You can use this on both iOS and Android or on just one, whichever you prefer -->
+  <android>
+    <ContentView
+      row="0"
+      class="align-bottom bg-semi-gradient"
+      height="15"
+      opacity=".2"
+    ></ContentView>
+  </android>
+
+  <GridLayout
+    row="1"
+    columns="*, *, *"
+    ios:rows="49"
+    android:rows="56"
+    class="bg-transparent"
+    [ngClass]="{
+      'border-t border-gray-300': isIOS
+    }"
+  >
+    <ns-tab-icon
+      text="Home"
+      [active]="appStateService?.tabView?.selectedIndex === 0"
+      image="~/assets/icons/home.png"
+      activeImage="~/assets/icons/home-selected.png"
+      sfSymbol="house.fill"
+      (select)="changeTab(0)"
+      (loaded)="loadedSelectedLogo($event)"
+    ></ns-tab-icon>
+    <ns-tab-icon
+      text="Favorites"
+      [col]="1"
+      [active]="appStateService?.tabView?.selectedIndex === 1"
+      image="~/assets/icons/fav.png"
+      activeImage="~/assets/icons/fav-selected.png"
+      sfSymbol="star"
+      (select)="changeTab(1)"
+    ></ns-tab-icon>
+    <ns-tab-icon
+      text="Settings"
+      [col]="2"
+      [active]="appStateService?.tabView?.selectedIndex === 2"
+      image="~/assets/icons/settings.png"
+      activeImage="~/assets/icons/settings-selected.png"
+      sfSymbol="gearshape"
+      (select)="changeTab(2)"
+    ></ns-tab-icon>
   </GridLayout>
-  
+</GridLayout>

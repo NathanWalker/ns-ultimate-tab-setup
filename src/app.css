@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-Page {
+Page, page-router-outlet {
   background: transparent;
+}
+
+.app-background {
+  background-color: #c1e7fd;
 }
 
 .fa {
@@ -11,7 +15,17 @@ Page {
   font-weight: 400;
 }
 
-/* TEMPORARY testing visuals */
+/* {N} property */
+.h-center {
+  horizontal-align: center;
+}
+.h-left {
+  horizontal-align: left;
+}
+.h-right {
+  horizontal-align: right;
+}
+
 .bg-semi-gradient {
   background: linear-gradient(to top, #595959, rgba(0,0,0,0));
 }

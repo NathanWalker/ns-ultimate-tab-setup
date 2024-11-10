@@ -1,4 +1,5 @@
 import { Component, inject } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "@nativescript/angular";
 import {
   Color,
@@ -11,8 +12,8 @@ import {
   Screen,
 } from "@nativescript/core";
 import { BottomNavigation } from "@nativescript-community/ui-material-bottom-navigation";
-import { ActivatedRoute } from "@angular/router";
 import { AppStateService } from "../../../core/services/app-state.service";
+import { BackNavigationOptions } from "@nativescript/angular/lib/legacy/router/router-extensions";
 
 @Component({
   moduleId: module.id,
@@ -26,6 +27,8 @@ export class HomeComponent {
   page = inject(Page);
   displayItems = new ObservableArray([]);
   container: GridLayout;
+  isIOS = __APPLE__;
+
   private _hasInitTab: {
     list?: boolean;
     favorites?: boolean;
@@ -54,6 +57,25 @@ export class HomeComponent {
   }
 
   changeTab(index) {
+    if (
+      this.appStateService.tabView.selectedIndex === index &&
+      (this.router.canGoBack() || this.router.canGoBackToPreviousPage())
+    ) {
+      // tapping on existing tab
+      if (this.router.canGoBack()) {
+        let options: BackNavigationOptions;
+        if (index === 2) {
+          // settings allow for inner outlet back nav
+          options = {
+            outlets: ["settingsTab"],
+          };
+        }
+        this.router.back(options);
+      } else if (this.router.canGoBackToPreviousPage()) {
+        this.router.backToPreviousPage();
+      }
+      return;
+    }
     this.appStateService.tabView.selectedIndex = index;
   }
 

@@ -1,29 +1,41 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { CoreTypes, Image } from "@nativescript/core";
+import { Component, computed, effect, input, output } from "@angular/core";
+import { registerElement } from "@nativescript/angular";
+import { CoreTypes, GridLayout, Image, Label } from "@nativescript/core";
+
+registerElement("ns-tab-icon", () => GridLayout);
 
 @Component({
   moduleId: module.id,
   selector: "ns-tab-icon",
   templateUrl: "./tab-icon.component.html",
+  host: {
+    rows: "auto,auto",
+    '[col]': "col()",
+    class: "mt-1 debug:bg-blue-50/50",
+    "(tap)": "select.emit()",
+  },
 })
 export class TabIconComponent {
-  @Input() image: string;
-  @Input() activeImage: string;
-  @Input("class") className: string;
-
-  _active: boolean = false;
-
-  @Input()
-  set active(value: boolean) {
-    this._active = value;
-
-    this.update();
-  }
-
-  @Output() loaded = new EventEmitter();
-
+  col = input<number>(0);
+  image = input<string>();
+  activeImage = input<string>();
+  sfSymbol = input<string>();
+  text = input<string>();
+  active = input(false);
+  loaded = output();
+  select = output();
+  activeTint = computed(() => {
+    return this.active() ? '#007ce5' : '#323232';
+  })
+  isIOS = __APPLE__;
   _inactiveImage: Image;
   _activeImage: Image;
+  _label: Label;
+
+  private _updater = effect(() => {
+    const _active = this.active();
+    this.update();
+  });
 
   loadedInactiveImage(args) {
     this._inactiveImage = args.object;
@@ -45,22 +57,25 @@ export class TabIconComponent {
   _scaleActive = { x: 1, y: 1 };
 
   update() {
+    if (this.sfSymbol() && this.isIOS) {
+      return;
+    }
     if (!(this._activeImage && this._inactiveImage)) {
       return;
     }
 
     this._activeImage
       ?.animate({
-        opacity: this._active ? 1 : 0,
-        scale: this._active ? this._scaleActive : this._scaleInactive,
+        opacity: this.active() ? 1 : 0,
+        scale: this.active() ? this._scaleActive : this._scaleInactive,
         duration: 120,
         curve: CoreTypes.AnimationCurve.easeInOut,
       })
       .catch(() => {});
     this._inactiveImage
       ?.animate({
-        opacity: this._active ? 0 : 1,
-        scale: this._active ? this._scaleActive : this._scaleInactive,
+        opacity: this.active() ? 0 : 1,
+        scale: this.active() ? this._scaleActive : this._scaleInactive,
         duration: 120,
         curve: CoreTypes.AnimationCurve.easeInOut,
       })
