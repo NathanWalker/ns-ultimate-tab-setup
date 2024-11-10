@@ -10,6 +10,7 @@ import { AppStateService } from "../../../core/services/app-state.service";
 import { Item } from "../../../core/models";
 import { ItemService } from "../../../core/services/item.service";
 import { uxLabelFadeIn } from "../../../utils";
+import { Haptics } from "@nativescript/haptics";
 
 @Component({
   moduleId: module.id,
@@ -29,6 +30,7 @@ export class FavoritesComponent implements OnInit {
   }
 
   itemTap(args) {
+    Haptics.selection();
     const item = this.itemService.getItem(args.index + 1);
     this.appStateService.navAwayFromTabs().then(() => {
       this.router.navigate(["/favorite-detail", item.id], {

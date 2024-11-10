@@ -12,6 +12,7 @@ import {
   Screen,
 } from "@nativescript/core";
 import { BottomNavigation } from "@nativescript-community/ui-material-bottom-navigation";
+import { Haptics } from '@nativescript/haptics';
 import { AppStateService } from "../../../core/services/app-state.service";
 import { BackNavigationOptions } from "@nativescript/angular/lib/legacy/router/router-extensions";
 
@@ -76,6 +77,7 @@ export class HomeComponent {
       }
       return;
     }
+    Haptics.selection();
     this.appStateService.tabView.selectedIndex = index;
   }
 
