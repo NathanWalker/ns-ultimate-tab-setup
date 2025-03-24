@@ -4,7 +4,14 @@ module.exports = {
     // use .dark to toggle dark mode - since 'media' (default) does not work in NativeScript
     darkMode: 'class',
     theme: {
-      extend: {},
+      extend: {
+        fontFamily: {
+          poppins: ['Poppins', 'Poppins-Regular'],
+        },
+        fontWeight: {
+          poppins: 400,
+        },
+      },
     },
     plugins: [],
     corePlugins: {

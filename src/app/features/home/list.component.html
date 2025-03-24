@@ -19,16 +19,27 @@
     iosOverflowSafeArea="true"
   >
     <ng-template let-item="item">
-      <GridLayout class="p-1">
-        <GridLayout [background]="itemBgColor" class="m-1" borderRadius="8">
-          <ImageCacheIt
-            [src]="item.image"
-            stretch="aspectFill"
-            class="w-full h-full"
-            borderRadius="8"
-          ></ImageCacheIt>
-        </GridLayout>
-      </GridLayout>
+      <StackLayout>
+        <CardView
+          margin="6"
+          ios:elevation="40"
+          android:elevation="10"
+          shadowOpacity="0.25"
+          android:shadowRadius="6"
+          ios:shadowRadius="3"
+          radius="8"
+          class="my-4 bg-transparent rounded-xl"
+        >
+          <GridLayout class="rounded-lg">
+            <ImageCacheIt
+              [src]="item?.image"
+              stretch="aspectFill"
+              class="w-full h-full"
+              borderRadius="8"
+            ></ImageCacheIt>
+          </GridLayout>
+        </CardView>
+      </StackLayout>
     </ng-template>
   </CollectionView>
 </GridLayout>

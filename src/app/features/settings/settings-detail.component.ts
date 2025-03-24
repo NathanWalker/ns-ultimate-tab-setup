@@ -17,6 +17,7 @@ export class SettingsDetailComponent {
   name: string;
   activeRoute = inject(ActivatedRoute);
   router = inject(RouterExtensions);
+  isAndroid = __ANDROID__;
 
   ngOnInit() {
     this.activeRoute.params.pipe(take(1)).subscribe((params) => {
