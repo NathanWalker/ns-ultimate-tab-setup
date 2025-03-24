@@ -1,0 +1,45 @@
+<GridLayout rows="auto,*" class="bg-transparent">
+  <!-- Optional title -->
+  <!-- <Label
+    text="My List"
+    class="text-xl text-gray-800 text-center align-middle"
+    (loaded)="loadedTitle($event)"
+  ></Label> -->
+
+  <CollectionView
+    row="1"
+    [items]="items"
+    colWidth="50%"
+    rowHeight="28%"
+    class="px-3 pb-3"
+    [ngClass]="{
+      'pt-3': !isIOS
+    }"
+    (itemTap)="itemTap($event)"
+    iosOverflowSafeArea="true"
+  >
+    <ng-template let-item="item">
+      <StackLayout>
+        <CardView
+          margin="6"
+          ios:elevation="40"
+          android:elevation="10"
+          shadowOpacity="0.25"
+          android:shadowRadius="6"
+          ios:shadowRadius="3"
+          radius="8"
+          class="my-4 bg-transparent rounded-xl"
+        >
+          <GridLayout class="rounded-lg">
+            <ImageCacheIt
+              [src]="item?.image"
+              stretch="aspectFill"
+              class="w-full h-full"
+              borderRadius="8"
+            ></ImageCacheIt>
+          </GridLayout>
+        </CardView>
+      </StackLayout>
+    </ng-template>
+  </CollectionView>
+</GridLayout>

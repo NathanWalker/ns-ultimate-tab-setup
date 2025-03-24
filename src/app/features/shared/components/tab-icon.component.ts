@@ -1,5 +1,5 @@
-import { Component, computed, effect, input, output } from "@angular/core";
-import { registerElement } from "@nativescript/angular";
+import { Component, computed, effect, input, NO_ERRORS_SCHEMA, output } from "@angular/core";
+import { NativeScriptCommonModule, registerElement } from "@nativescript/angular";
 import { CoreTypes, GridLayout, Image, Label } from "@nativescript/core";
 
 registerElement("ns-tab-icon", () => GridLayout);
@@ -14,6 +14,8 @@ registerElement("ns-tab-icon", () => GridLayout);
     class: "mt-1 debug:bg-blue-50/50",
     "(tap)": "select.emit()",
   },
+  imports: [NativeScriptCommonModule],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class TabIconComponent {
   col = input<number>(0);

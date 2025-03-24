@@ -1,22 +1,28 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, NO_ERRORS_SCHEMA, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "@nativescript/angular";
 import { EventData, Label } from "@nativescript/core";
 import { take } from "rxjs";
-import { uxLabelFadeIn } from "../../../utils";
-import { Item } from "../../../core/models";
-import { ItemService } from "../../../core/services/item.service";
+import { uxLabelFadeIn } from "../../utils";
+import { Item } from "../../core/models";
+import { ItemService } from "../../core/services/item.service";
+import { SHARED_MODULES } from "../shared/shared.module";
+import { AppStateService } from "~/app/core/services/app-state.service";
 
 @Component({
   moduleId: module.id,
   selector: "ns-favorite-detail",
   templateUrl: "./favorite-detail.component.html",
+  imports: [...SHARED_MODULES],
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class FavoriteDetailComponent implements OnInit {
   itemService = inject(ItemService);
   activeRoute = inject(ActivatedRoute);
+  appStateService = inject(AppStateService);
   router = inject(RouterExtensions);
-  item: Item;
+  isAndroid = __ANDROID__;
+  item: Item | undefined;
   title: string;
 
   ngOnInit() {
@@ -29,7 +35,9 @@ export class FavoriteDetailComponent implements OnInit {
   }
 
   back() {
-    this.router.back();
+    this.router.back({
+      relativeTo: this.activeRoute,
+    });
   }
 
   loadedTitle(args: EventData) {

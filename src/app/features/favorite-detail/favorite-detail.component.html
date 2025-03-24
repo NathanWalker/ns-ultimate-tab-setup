@@ -10,6 +10,9 @@
       col="1"
       [text]="title"
       class="text-gray-600 text-left align-middle ml-1"
+      [ngClass]="{
+        'mt-1': isAndroid
+      }"
       (loaded)="loadedTitle($event)"
     ></Label>
   </GridLayout>
