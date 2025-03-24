@@ -1,4 +1,4 @@
-import { Component, inject, NgZone } from "@angular/core";
+import { Component, inject, NgZone, NO_ERRORS_SCHEMA } from "@angular/core";
 import { LottieView } from "@nativescript-community/ui-lottie";
 import { RouterExtensions } from "@nativescript/angular";
 import { Animation, ContentView, CoreTypes } from "@nativescript/core";
@@ -7,6 +7,7 @@ import { Animation, ContentView, CoreTypes } from "@nativescript/core";
   moduleId: module.id,
   selector: "ns-launch-screen",
   templateUrl: "./launch-screen.component.html",
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class LaunchScreenComponent {
   router = inject(RouterExtensions);

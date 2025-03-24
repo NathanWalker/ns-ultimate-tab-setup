@@ -1,25 +1,25 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, NO_ERRORS_SCHEMA } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { RouterExtensions } from "@nativescript/angular";
+import { PageRouterOutlet, RouterExtensions } from "@nativescript/angular";
 import {
-  Color,
   CoreTypes,
   GridLayout,
   Image,
-  Label,
   ObservableArray,
   Page,
-  Screen,
 } from "@nativescript/core";
 import { BottomNavigation } from "@nativescript-community/ui-material-bottom-navigation";
-import { Haptics } from '@nativescript/haptics';
-import { AppStateService } from "../../../core/services/app-state.service";
-import { BackNavigationOptions } from "@nativescript/angular/lib/legacy/router/router-extensions";
+import { Haptics } from "@nativescript/haptics";
+import { AppStateService } from "../../core/services/app-state.service";
+import { SHARED_MODULES } from "../shared/shared.module";
+import { TabIconComponent } from "../shared/components/tab-icon.component";
 
 @Component({
   moduleId: module.id,
   selector: "ns-home",
   templateUrl: "./home.component.html",
+  imports: [...SHARED_MODULES, PageRouterOutlet, TabIconComponent],
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class HomeComponent {
   router = inject(RouterExtensions);
@@ -64,7 +64,7 @@ export class HomeComponent {
     ) {
       // tapping on existing tab
       if (this.router.canGoBack()) {
-        let options: BackNavigationOptions;
+        let options;
         if (index === 2) {
           // settings allow for inner outlet back nav
           options = {
@@ -88,23 +88,13 @@ export class HomeComponent {
   selectedIndexChange(args) {
     const tabView = <BottomNavigation>args.object;
     if (tabView) {
-      // console.log('tabView.selectedIndex:', tabView.selectedIndex);
-      // if (index !== this.appFlag.selectedTabIndex) {
       this._viewTab(tabView.selectedIndex);
-      // }
     }
   }
 
   selectedLogo: Image;
   loadedSelectedLogo(args) {
     this.selectedLogo = <Image>args.object;
-    // console.log(`HomeComponent loadedLogo`)
-    // if (global.isIOS && this.selectedLogo?.ios) {
-    //   // Option 1: pass around references
-    //   // setLogoTo(image);
-    //   // Option 2: set tag to allow transition to use viewcontroller's to find by tag
-    //   this.selectedLogo.ios.tag = getLogoId();
-    // }
   }
 
   templateSelector = (item: any, index: number, items: any) => {
@@ -136,33 +126,10 @@ export class HomeComponent {
         break;
     }
 
-    // this._analytics.track(Tracking.Actions.NAV_TAB_SWITCH, {
-    //   category: Tracking.Categories.NAVIGATION,
-    //   label: trackName,
-    // });
-    // this._analytics.setScreenName(trackName);
-
-    // this._log.debug('tab index changed:', index);
     if (route) {
       this.router.navigate(["/home", route], {
         animated: false,
-        // relativeTo: this.activeRoute,
       });
     }
-    // this._ngZone.run(() => {
-    //   if (route) {
-    //     // && trackName !== 'discover') {
-    //     // needs to activate route the first time
-    //     this._store.dispatch(
-    //       new RouterActions.Go({
-    //         path: [route],
-    //         extras: {
-    //           animated: false,
-    //           relativeTo: this.activeRoute,
-    //         },
-    //       })
-    //     );
-    //   }
-    // });
   }
 }

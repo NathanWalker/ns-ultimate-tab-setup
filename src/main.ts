@@ -1,14 +1,22 @@
-import { platformNativeScript, runNativeScriptAngularApp } from '@nativescript/angular';
+import {
+  bootstrapApplication,
+  provideNativeScriptHttpClient,
+  provideNativeScriptNgZone,
+  provideNativeScriptRouter,
+  runNativeScriptAngularApp,
+} from '@nativescript/angular';
 import { CoreTypes, TouchManager, View } from '@nativescript/core';
-import { AppModule } from './app/app.module';
-import { setWindowBackgroundColor } from './app/utils';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { withInterceptorsFromDi } from '@angular/common/http';
+import { routes } from './app.routes';
+import { AppComponent } from './app/app.component';
 
 // default Touch animations for entire app
 const originalTransform = Symbol('originalTransform');
 TouchManager.enableGlobalTapAnimations = true;
 TouchManager.animations = {
   down: (view: View) => {
-    if (global.isIOS) {
+    if (__IOS__) {
       UIView.animateWithDurationDelayUsingSpringWithDampingInitialSpringVelocityOptionsAnimationsCompletion(
         0.3,
         0,
@@ -36,7 +44,7 @@ TouchManager.animations = {
     }
   },
   up: (view: View) => {
-    if (global.isIOS) {
+    if (__IOS__) {
       UIView.animateWithDurationDelayUsingSpringWithDampingInitialSpringVelocityOptionsAnimationsCompletion(
         0.3,
         0,
@@ -63,10 +71,15 @@ TouchManager.animations = {
   },
 };
 
+
 runNativeScriptAngularApp({
   appModuleBootstrap: () => {
-    setWindowBackgroundColor('#3e1839');
-    return platformNativeScript().bootstrapModule(AppModule)
-  }
+    return bootstrapApplication(AppComponent, {
+      providers: [
+        provideNativeScriptHttpClient(withInterceptorsFromDi()),
+        provideNativeScriptRouter(routes),
+        provideExperimentalZonelessChangeDetection()
+      ],
+    });
+  },
 });
-

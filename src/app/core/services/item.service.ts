@@ -35,7 +35,7 @@ export class ItemService {
     return this.items;
   }
 
-  getItem(id: number): Item {
+  getItem(id: number): Item | undefined {
     return this.items.find((item) => item.id === id);
   }
 }

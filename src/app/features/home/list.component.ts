@@ -1,10 +1,18 @@
-import { Component, inject } from "@angular/core";
-import { NativeDialogService, RouterExtensions } from "@nativescript/angular";
-import { EventData, Page, PageTransition, Screen, SharedTransition } from "@nativescript/core";
+import { Component, inject, NO_ERRORS_SCHEMA } from "@angular/core";
+import { RouterExtensions } from "@nativescript/angular";
+import {
+  EventData,
+  Page,
+  PageTransition,
+  Screen,
+  SharedTransition,
+} from "@nativescript/core";
 import { Haptics } from "@nativescript/haptics";
-import { uxLabelFadeIn } from "../../../utils";
-import { AppStateService } from "../../../core/services/app-state.service";
-import { ItemService } from "~/app/core/services/item.service";
+import { uxLabelFadeIn } from "../../utils";
+import { AppStateService } from "../../core/services/app-state.service";
+import { ItemService } from "../../core/services/item.service";
+import { SHARED_MODULES } from "../shared/shared.module";
+import { Item } from "../../core/models";
 
 interface IListItem {
   index: number;
@@ -16,9 +24,10 @@ interface IListItem {
   moduleId: module.id,
   selector: "ns-list",
   templateUrl: "./list.component.html",
+  imports: [...SHARED_MODULES],
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class ListComponent {
-  nativeDialog = inject(NativeDialogService);
   appState = inject(AppStateService);
   itemService = inject(ItemService);
   router = inject(RouterExtensions);
@@ -40,11 +49,11 @@ export class ListComponent {
 
   itemTap(args) {
     Haptics.selection();
-    const item = this.itemService.getItem(1);
+    const item = this.itemService.getItem(1) as Item;
     this.appState.navAwayFromTabs().then(() => {
       this.router.navigate(["/favorite-detail", item.id], {
         queryParams: {
-          title: 'Home'
+          title: "Home",
         },
         transition: SharedTransition.custom(new PageTransition(), {
           pageStart: {
@@ -57,8 +66,8 @@ export class ListComponent {
           },
           pageReturn: {
             duration: 150,
-          }
-        })
+          },
+        }),
       });
     });
   }
