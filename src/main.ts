@@ -6,7 +6,7 @@ import {
   runNativeScriptAngularApp,
 } from '@nativescript/angular';
 import { CoreTypes, TouchManager, View } from '@nativescript/core';
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { withInterceptorsFromDi } from '@angular/common/http';
 import { routes } from './app.routes';
 import { AppComponent } from './app/app.component';
@@ -78,7 +78,7 @@ runNativeScriptAngularApp({
       providers: [
         provideNativeScriptHttpClient(withInterceptorsFromDi()),
         provideNativeScriptRouter(routes),
-        provideExperimentalZonelessChangeDetection()
+        provideZonelessChangeDetection()
       ],
     });
   },

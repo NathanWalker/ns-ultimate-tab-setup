@@ -7,18 +7,18 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@angular/animations": "~19.2.0",
-    "@angular/common": "~19.2.0",
-    "@angular/compiler": "~19.2.0",
-    "@angular/core": "~19.2.0",
-    "@angular/forms": "~19.2.0",
-    "@angular/platform-browser": "~19.2.0",
-    "@angular/platform-browser-dynamic": "~19.2.0",
-    "@angular/router": "~19.2.0",
+    "@angular/animations": "~20.2.0",
+    "@angular/common": "~20.2.0",
+    "@angular/compiler": "~20.2.0",
+    "@angular/core": "~20.2.0",
+    "@angular/forms": "~20.2.0",
+    "@angular/platform-browser": "~20.2.0",
+    "@angular/platform-browser-dynamic": "~20.2.0",
+    "@angular/router": "~20.2.0",
     "@nativescript-community/ui-collectionview": "~6.0.4",
     "@nativescript-community/ui-lottie": "^6.0.0",
     "@nativescript-community/ui-material-bottom-navigation": "^7.2.0",
-    "@nativescript/angular": "^19.0.0",
+    "@nativescript/angular": "^20.0.0",
     "@nativescript/core": "~8.9.0",
     "@nativescript/haptics": "^3.1.0",
     "@nativescript/tailwind": "~2.1.0",
@@ -28,15 +28,25 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~19.2.0",
-    "@angular/compiler-cli": "~19.2.0",
+    "@angular-devkit/build-angular": "~20.2.0",
+    "@angular/compiler-cli": "~20.2.0",
     "@nativescript/android": "~8.9.0",
     "@nativescript/ios": "~8.9.0",
     "@nativescript/types": "~8.9.0",
     "@nativescript/webpack": "~5.0.22",
-    "@ngtools/webpack": "~19.2.0",
+    "@ngtools/webpack": "~20.2.0",
+    "nativescript": "alpha",
     "patch-package": "^8.0.0",
     "tailwindcss": "~3.4.0",
-    "typescript": "~5.7.0"
+    "typescript": "~5.8.0"
+  },
+  "overrides": {
+    "@angular-devkit/core": {
+      "source-map": "0.6.1"
+    },
+    "@angular-devkit/build-angular": {
+      "source-map": "0.6.1"
+    },
+    "source-map": "0.6.1"
   }
 }

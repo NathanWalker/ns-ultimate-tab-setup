@@ -10,3 +10,8 @@ https://github.com/NathanWalker/ns-ultimate-tab-setup/assets/457187/7a3f78b3-650
 - ultimate control of tab bar layout with icon/text animations of your own
 - example of using custom native views within the project (without using an external third party plugin)
 - styled completely with [Tailwind CSS](https://tailwindcss.com/)
+
+## Notes
+
+- This does not use iOS 26+ liquid glass intentionally as it shows custom control over taps.
+  - separate branch will be shared in future that shows how to use liquid glass with this setup 
