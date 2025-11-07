@@ -1,7 +1,7 @@
 import { NativeScriptConfig } from '@nativescript/core';
 
 export default {
-  id: 'org.nativescript.tabsample',
+  id: 'io.nstudio.nsngtabsample',
   appPath: 'src',
   appResourcesPath: 'App_Resources',
   android: {
