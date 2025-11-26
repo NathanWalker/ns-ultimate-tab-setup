@@ -1,88 +1,51 @@
 <GridLayout rows="*, auto" class="bg-transparent" (loaded)="loadedHome($event)">
-  <MDBottomNavigation
+  <TabView
     rowSpan="2"
     (selectedIndexChange)="selectedIndexChange($event)"
     (loaded)="loadedTabs($event)"
     swipeEnabled="false"
     class="app-background"
+    androidTabsPosition="bottom"
+    tabTextFontSize="11"
+    iosTabBarMinimizeBehavior="onScrollDown"
   >
-    <MDTabStrip>
-      <MDTabStripItem class="debug:bg-[#000316]"></MDTabStripItem>
-      <MDTabStripItem class="debug:bg-[#000316]"></MDTabStripItem>
-      <MDTabStripItem class="debug:bg-[#000316]"></MDTabStripItem>
-    </MDTabStrip>
-    <MDTabContentItem>
-      <GridLayout>
-        <page-router-outlet
-          actionBarVisibility="never"
-          name="listTab"
-        ></page-router-outlet>
-      </GridLayout>
-    </MDTabContentItem>
-    <MDTabContentItem>
-      <GridLayout>
-        <page-router-outlet
-          actionBarVisibility="never"
-          name="favoritesTab"
-        ></page-router-outlet>
-      </GridLayout>
-    </MDTabContentItem>
-    <MDTabContentItem>
-      <GridLayout>
-        <page-router-outlet
-          actionBarVisibility="never"
-          name="settingsTab"
-        ></page-router-outlet>
-      </GridLayout>
-    </MDTabContentItem>
-  </MDBottomNavigation>
+    <GridLayout
+      *tabItem="{
+        title: 'Home',
+        textTransform: 'capitalize',
+        iconSource: isIOS ? 'sys://house.fill' : 'font://A',
+      }"
+    >
+      <page-router-outlet
+        actionBarVisibility="never"
+        name="listTab"
+      ></page-router-outlet>
+    </GridLayout>
 
-  <!-- You can use this on both iOS and Android or on just one, whichever you prefer -->
-  <android>
-    <ContentView
-      row="0"
-      class="align-bottom bg-semi-gradient"
-      height="15"
-      opacity=".2"
-    ></ContentView>
-  </android>
+    <GridLayout
+      *tabItem="{
+        title: 'Favorites',
+        textTransform: 'capitalize',
+        iconSource: isIOS ? 'sys://star.fill' : 'font://B',
+      }"
+    >
+      <page-router-outlet
+        actionBarVisibility="never"
+        name="favoritesTab"
+      ></page-router-outlet>
+    </GridLayout>
 
-  <GridLayout
-    row="1"
-    columns="*, *, *"
-    ios:rows="49"
-    android:rows="56"
-    class="bg-[#c1e7fd]"
-    [ngClass]="{
-      'border-t border-gray-300': isIOS
-    }"
-  >
-    <ns-tab-icon
-      text="Home"
-      [active]="appStateService?.tabView?.selectedIndex === 0"
-      image="~/assets/icons/home.png"
-      activeImage="~/assets/icons/home-selected.png"
-      sfSymbol="house.fill"
-      (select)="changeTab(0)"
-      (loaded)="loadedSelectedLogo($event)"
-    ></ns-tab-icon>
-    <ns-tab-icon
-      text="Favorites"
-      [col]="1"
-      [active]="appStateService?.tabView?.selectedIndex === 1"
-      image="~/assets/icons/fav.png"
-      activeImage="~/assets/icons/fav-selected.png"
-      sfSymbol="star"
-      (select)="changeTab(1)"
-    ></ns-tab-icon>
-    <ns-tab-icon
-      text="Settings"
-      [col]="2"
-      [active]="appStateService?.tabView?.selectedIndex === 2"
-      image="~/assets/icons/settings.png"
-      activeImage="~/assets/icons/settings-selected.png"
-      sfSymbol="gearshape"
-      (select)="changeTab(2)"
-    ></ns-tab-icon>
-  </GridLayout>
+    <GridLayout
+      *tabItem="{
+        title: 'Settings',
+        textTransform: 'capitalize',
+        iconSource: isIOS ? 'sys://gear' : 'font://C',
+      }"
+    >
+      <page-router-outlet
+        actionBarVisibility="never"
+        name="settingsTab"
+      ></page-router-outlet>
+    </GridLayout>
+  </TabView>
 </GridLayout>

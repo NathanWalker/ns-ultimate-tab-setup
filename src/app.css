@@ -90,3 +90,11 @@ Page, page-router-outlet {
 .bg-tile {
   background: linear-gradient(135deg, #161828, #2f2444);
 }
+
+.icon-label{
+    font-size: 22;
+    font-family: "ns-playground-font";
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+}

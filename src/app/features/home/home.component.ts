@@ -1,6 +1,10 @@
 import { Component, inject, NO_ERRORS_SCHEMA } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { PageRouterOutlet, RouterExtensions } from "@nativescript/angular";
+import {
+  PageRouterOutlet,
+  RouterExtensions,
+  TabViewDirective,
+} from "@nativescript/angular";
 import {
   CoreTypes,
   GridLayout,
@@ -12,13 +16,12 @@ import { BottomNavigation } from "@nativescript-community/ui-material-bottom-nav
 import { Haptics } from "@nativescript/haptics";
 import { AppStateService } from "../../core/services/app-state.service";
 import { SHARED_MODULES } from "../shared/shared.module";
-import { TabIconComponent } from "../shared/components/tab-icon.component";
 
 @Component({
   moduleId: module.id,
   selector: "ns-home",
   templateUrl: "./home.component.html",
-  imports: [...SHARED_MODULES, PageRouterOutlet, TabIconComponent],
+  imports: [...SHARED_MODULES, PageRouterOutlet, TabViewDirective],
   schemas: [NO_ERRORS_SCHEMA],
 })
 export class HomeComponent {
@@ -83,6 +86,13 @@ export class HomeComponent {
 
   loadedTabs(args) {
     this.appStateService.tabView = args.object;
+    if (__ANDROID__) {
+      const tabView = this.appStateService.tabView;
+      if (!tabView || !tabView.items) return;
+      tabView.items.forEach((item) => {
+        (item as any)["iconFontFamily"] = "ns-playground-font";
+      });
+    }
   }
 
   selectedIndexChange(args) {
