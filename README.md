@@ -13,5 +13,5 @@ https://github.com/NathanWalker/ns-ultimate-tab-setup/assets/457187/7a3f78b3-650
 
 ## Notes
 
-- This does not use iOS 26+ liquid glass intentionally as it shows custom control over taps.
-  - separate branch will be shared in future that shows how to use liquid glass with this setup 
+- The `main` branch does not use iOS 26+ liquid glass intentionally as it shows custom control over taps.
+  - You can switch to `feat/tabview` to see iOS 26+ liquid glass tabs which uses @nativescript/core `TabView`.
